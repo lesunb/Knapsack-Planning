@@ -123,7 +123,7 @@ def testCallForHelpIsAccepted():
     print("[p] call for help is accepted:")
     print(k)
 
-def setupAutomatedInfo():
+def testLocationIsIdentified():
     t = ["Consider last known location[l] of [p]", 
         "access [p] location [l] from triangulation", 
         "access [p] location [l] from a GPS", 
@@ -142,6 +142,61 @@ def setupAutomatedInfo():
     print("setup automated [p] info:")
     print(k)
 
+def testSituationsAreIdentified():
+    t = ["processes sensors", "collecs data from sensors", "persists data to database", "identifies situation"]
+    wt = [0, 0, 0, 0]
+    g = [ 1, 1, 1, 1]
+    val = utilitary(wt)
+    capacity = 30 #(baseline c3 10 c9 5)
+
+    knp = knapsackObject(t, val, wt, g)
+    k = knapsackTable(capacity, knp)
+
+    print("[p] situationsAreIdentified:")
+    print(k)
+
+
+def testInfoIsSentToEmergency():
+	t = ["send [p] info by SMS", "send [p] info by internet"]
+	wt = [0,0]
+	g = [1,1]
+	val = utilitary(wt)
+	capacity = 60
+
+	knp = knapsackObject(t, val, wt, g)
+	k = knapsackTable(capacity, knp)
+	
+	print("[p] info is sent to emergency")
+	print(k)
+	
+
+def testSituationDataIsRecovered():
+	t = ["access data from database"]
+	wt = [20]
+	g = [1]
+	val = utilitary(wt)
+	capacity = 20
+
+	knp = knapsackObject(t, val, wt, g)
+	k = knapsackTable(capacity, knp)
+	
+	print("[p] situation data is rocevered:")
+	print(k)
+	
+def testContactResponsibleFor():
+	t = ["[p]contact responsible for"]
+	wt = [25]
+	g = [1]
+	val = utilitary(wt)
+	capacity = 45
+    
+    knp = knapsackObject(t, val, wt, g)
+    k = knapsackTable(capacity, knp)
+	
+	print("[p] contact responsible for:")
+	print(k)
+#todo: criar funções que ative os contextos
+
 testIsNotifiedAboutEmergency()
 testCallForHelpIsAccepted()
-setupAutomatedInfo()
+testLocationIsIdentified()
